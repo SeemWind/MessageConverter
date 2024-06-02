@@ -9,7 +9,6 @@ import java.util.regex.Pattern;
  */
 public class Transformer {
     String input;
-    String c1, c2;
     String returnText;
 
     public Transformer(String string) {
@@ -18,7 +17,7 @@ public class Transformer {
     }
 
     // 转换渐变颜色
-    public String getGradient() {
+    public String toMiniGradient() {
         // minedown 渐变匹配
         Pattern mineDown = Pattern.compile("(&#[A-Fa-f0-9]{6}(-#[A-Fa-f0-9]{6})+&)");
         Matcher mineDownMatcher = mineDown.matcher(returnText);
@@ -59,4 +58,8 @@ public class Transformer {
 
     }
 
+    // todo
+    public String toTrGradient() {
+        return null;
+    }
 }

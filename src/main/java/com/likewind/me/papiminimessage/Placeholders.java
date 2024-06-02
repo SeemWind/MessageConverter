@@ -41,7 +41,7 @@ public class Placeholders extends PlaceholderExpansion {
             var = PlaceholderAPI.setPlaceholders(player, var);
 
             // 转换 minedown为 minimessage
-            var = new Transformer(var).getGradient();
+            var = new Transformer(var).toMiniGradient();
             return var;
         }
         return null;
