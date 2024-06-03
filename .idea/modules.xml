@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/papi-MiniMessage.iml" filepath="$PROJECT_DIR$/papi-MiniMessage.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MessageConverter.iml" filepath="$PROJECT_DIR$/MessageConverter.iml" />
     </modules>
   </component>
 </project>

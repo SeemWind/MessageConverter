@@ -1,4 +1,4 @@
-package com.likewind.me.papiminimessage;
+package com.likewind.me.MessageConverter;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -23,7 +23,8 @@ public class Transformer {
         Matcher mineDownMatcher = mineDown.matcher(returnText);
 
         // hex颜色代码匹配
-        System.out.println(returnText);
+        // test
+        // System.out.println(returnText);
 
         // 循环替换所有渐变标签
         while (mineDownMatcher.find()) {
@@ -32,11 +33,13 @@ public class Transformer {
             Pattern color = Pattern.compile("(#[A-Fa-f0-9]{6})");
             // 捕获 minedown 渐变文本
             Matcher colorMatcher = color.matcher(mineDownMatcher.group(1));
-            System.out.println(mineDownMatcher.group(1));
+            // test
+            // System.out.println(mineDownMatcher.group(1));
 
             // 将 hex颜色代码 存储
             while (colorMatcher.find()) {
-                System.out.println(colorMatcher.group(1));
+                // test
+                // System.out.println(colorMatcher.group(1));
                 colorCode.add(colorMatcher.group(1));
             }
 
@@ -49,7 +52,8 @@ public class Transformer {
             }
             miniMessage.append(">");
 
-            System.out.println(miniMessage);
+            // test
+            // System.out.println(miniMessage);
 
             returnText = returnText.replaceFirst(mineDown.pattern(), String.valueOf(miniMessage));
         }

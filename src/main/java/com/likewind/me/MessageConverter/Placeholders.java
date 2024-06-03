@@ -1,4 +1,4 @@
-package com.likewind.me.papiminimessage;
+package com.likewind.me.MessageConverter;
 
 import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
