@@ -19,7 +19,7 @@ for example:
 
 if `%luckperms_prefix%` is `&#111111-#222222-#333333&[master]&r`
 
-and `%msg_md2mini_luckperms_prefix%` will return this `<gradient:#111111:#222222:#333333>[master]<reset>`
+and `%cmsg_md2mini_luckperms_prefix%` will return this `<gradient:#111111:#222222:#333333>[master]<reset>`
 
 remember the plugin will not end the tag automatically 
 `<gradient></gradient>`
