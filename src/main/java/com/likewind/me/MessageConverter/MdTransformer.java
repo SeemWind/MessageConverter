@@ -1,5 +1,9 @@
 package com.likewind.me.MessageConverter;
 
+import de.themoep.minedown.adventure.MineDown;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.minimessage.MiniMessage;
+
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -8,28 +12,53 @@ import java.util.regex.Pattern;
  * @author like_wind
  */
 public class MdTransformer {
+
     // 预编译正则表达式
-    private final Pattern mineDown = Pattern.compile("(&#[A-Fa-f0-9]{6}(-#[A-Fa-f0-9]{6})+&)");
+    private final Pattern md = Pattern.compile("(&#[A-Fa-f0-9]{6}(-#[A-Fa-f0-9]{6})+&)");
     private final Pattern color = Pattern.compile("(#[A-Fa-f0-9]{6})");
     String input;
+    MineDown mineDown;
+    MiniMessage mm = MiniMessage.miniMessage();
+    String miniMessageString;
+    Component component;
+
 
     public MdTransformer(String string) {
-        this.input = string;
+        input = string;
+        mineDown = new MineDown(input);
+        component = mineDown.toComponent();
+    }
+
+    public String getComponentString() {
+        return mm.serialize(component);
     }
 
     // 转换 minedown 渐变颜色
-    public String toMiniGradient() {
+    public String toMini() {
+        String string = this.GradientMark();
+        MineDown mineDown = new MineDown(string);
+        Component component = mineDown.toComponent();
+        String s = mm.serialize(component);
+        return s.replaceAll("(\\\\<gradient:)", "<gradient:");
+
+    }
+
+    public String transGradient() {
+        return null;
+    }
+
+    // 转换 minedown 渐变颜色
+    public String GradientMark() {
 
         String returnText = input;
         // minedown 渐变匹配
-        Matcher mineDownMatcher = mineDown.matcher(returnText);
+        Matcher mineDownMatcher = md.matcher(returnText);
         // hex颜色代码匹配
         // test
         // System.out.println(returnText);
 
         // 循环替换所有渐变标签
         while (mineDownMatcher.find()) {
-
             // 捕获 minedown 渐变文本
 
             Matcher colorMatcher = color.matcher(mineDownMatcher.group(1));
@@ -47,7 +76,7 @@ public class MdTransformer {
 
 
             // 构建 minimessage 字符串
-            StringBuilder miniMessage = new StringBuilder("<gradient");
+            StringBuilder miniMessage = new StringBuilder("\\<gradient");
             // 循环添加所有渐变
             for (String code : colorCode) {
                 miniMessage.append(":").append(code);
@@ -57,10 +86,8 @@ public class MdTransformer {
             // test
             // System.out.println(miniMessage);
 
-            returnText = returnText.replaceFirst(mineDown.pattern(), String.valueOf(miniMessage));
+            returnText = returnText.replaceFirst(md.pattern(), String.valueOf(miniMessage));
         }
-        // 替换重置字符
-        returnText = returnText.replaceAll("(&r)", "<reset>");
         return returnText;
 
     }
