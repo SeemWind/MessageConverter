@@ -5,9 +5,6 @@ import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.OfflinePlayer;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 public class Placeholders extends PlaceholderExpansion {
 
     @Override
@@ -25,23 +22,17 @@ public class Placeholders extends PlaceholderExpansion {
         return "1.0.0";
     }
 
-    public static boolean matches(@NotNull String regex,String string) {
-        Pattern p = Pattern.compile(regex);
-        Matcher m = p.matcher(string);
-        return m.matches();
-    }
-
     @Override
     public String onRequest(OfflinePlayer player, @NotNull String params) {
         // 获取参数，检查用法
-        if (matches("md2mini_.*", params)) {
+        if (params.startsWith("md2mini_")) {
 
-            // 先解析papi占位符
+            // 先解析 papi 占位符
             String var = "%" + params.replaceFirst("md2mini_","") + "%";
             var = PlaceholderAPI.setPlaceholders(player, var);
 
             // 转换 minedown为 minimessage
-            var = new Transformer(var).toMiniGradient();
+            var = new MdTransformer(var).toMiniGradient();
             return var;
         }
         return null;
