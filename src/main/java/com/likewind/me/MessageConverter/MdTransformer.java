@@ -35,11 +35,11 @@ public class MdTransformer {
 
     // 转换 minedown 渐变颜色
     public String toMini() {
-        String string = this.GradientMark();
+        String string = this.gradientMark();
         MineDown mineDown = new MineDown(string);
         Component component = mineDown.toComponent();
         String s = mm.serialize(component);
-        return s.replaceAll("(\\\\<gradient:)", "<gradient:");
+        return s .replaceAll("(\\$\\\\<gradient:)", "<gradient:");
 
     }
 
@@ -48,7 +48,7 @@ public class MdTransformer {
     }
 
     // 转换 minedown 渐变颜色
-    public String GradientMark() {
+    public String gradientMark() {
 
         String returnText = input;
         // minedown 渐变匹配
@@ -76,17 +76,17 @@ public class MdTransformer {
 
 
             // 构建 minimessage 字符串
-            StringBuilder miniMessage = new StringBuilder("\\<gradient");
+            StringBuilder miniGradient = new StringBuilder("\\$\\<gradient");
             // 循环添加所有渐变
             for (String code : colorCode) {
-                miniMessage.append(":").append(code);
+                miniGradient.append(":").append(code);
             }
-            miniMessage.append(">");
+            miniGradient.append(">");
 
             // test
             // System.out.println(miniMessage);
 
-            returnText = returnText.replaceFirst(md.pattern(), String.valueOf(miniMessage));
+            returnText = returnText.replaceFirst(md.pattern(), String.valueOf(miniGradient));
         }
         return returnText;
 

@@ -9,7 +9,7 @@ public class Placeholders extends PlaceholderExpansion {
 
     @Override
     public @NotNull String getIdentifier() {
-        return "cmsg";
+        return "minimsgc";
     }
 
     @Override
@@ -19,7 +19,7 @@ public class Placeholders extends PlaceholderExpansion {
 
     @Override
     public @NotNull String getVersion() {
-        return "1.0.0";
+        return "2.0.0";
     }
 
     @Override
