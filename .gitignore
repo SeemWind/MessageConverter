@@ -1,3 +1,4 @@
 # 项目排除路径
 /target/
 /src/main/java/com/likewind/me/MessageConverter/test/
+/src/main/resources/
