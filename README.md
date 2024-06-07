@@ -28,6 +28,6 @@ you need to close the strict minimessage mode, and use &r to set reset tag <rese
 
 > [!NOTE]
 > You can't use $ like this: <br/>
-> $&lt;gradient:xxx:xxx&gt; <br/>
+> $\\&lt;gradient:xxx:xxx&gt; <br/>
 > will be transformed to <br/>
 > &lt;gradient:xxx:xxx&gt;
