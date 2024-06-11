@@ -24,16 +24,24 @@ public class Placeholders extends PlaceholderExpansion {
 
     @Override
     public String onRequest(OfflinePlayer player, @NotNull String params) {
+
+        String p1 = "md2mini_";
+        String p2 = "mini2md_";
         // 获取参数，检查用法
-        if (params.startsWith("md2mini_")) {
+        if (params.startsWith(p1)) {
 
             // 先解析 papi 占位符
-            String var = "%" + params.replaceFirst("md2mini_","") + "%";
+            String var = "%" + params.replaceFirst(p1,"") + "%";
             var = PlaceholderAPI.setPlaceholders(player, var);
-
             // 转换 minedown为 minimessage
             var = new MdTransformer(var).toMini();
             return var;
+
+        } else if (params.startsWith(p2)) {
+            String var = "%" + params.replaceFirst(p2,"") + "%";
+            var = PlaceholderAPI.setPlaceholders(player, var);
+
+            var = new MiniTransformer(var).toMineDown();
         }
         return null;
     }

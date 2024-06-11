@@ -6,31 +6,24 @@ import net.kyori.adventure.text.minimessage.MiniMessage;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * @author like_wind
  */
 public class MdTransformer {
-
-    // 预编译正则表达式
-    private final Pattern md = Pattern.compile("(&#[A-Fa-f0-9]{6}(-#[A-Fa-f0-9]{6})+&)");
-    private final Pattern color = Pattern.compile("(#[A-Fa-f0-9]{6})");
+    ;
     String input;
-    MineDown mineDown;
     MiniMessage mm = MiniMessage.miniMessage();
-    String miniMessageString;
     Component component;
 
 
-    public MdTransformer(String string) {
-        input = string;
-        mineDown = new MineDown(input);
-        component = mineDown.toComponent();
+    public MdTransformer(String input) {
+        this.input = input;
+        component = new MineDown(input).toComponent();
     }
 
     public String getComponentString() {
-        return mm.serialize(component);
+        return Util.MINI_MESSAGE.serialize(component);
     }
 
     // 转换 minedown 渐变颜色
@@ -38,13 +31,9 @@ public class MdTransformer {
         String string = this.gradientMark();
         MineDown mineDown = new MineDown(string);
         Component component = mineDown.toComponent();
-        String s = mm.serialize(component);
+        String s = Util.MINI_MESSAGE.serialize(component);
         return s .replaceAll("(\\$\\\\<gradient:)", "<gradient:");
 
-    }
-
-    public String transGradient() {
-        return null;
     }
 
     // 转换 minedown 渐变颜色
@@ -52,7 +41,7 @@ public class MdTransformer {
 
         String returnText = input;
         // minedown 渐变匹配
-        Matcher mineDownMatcher = md.matcher(returnText);
+        Matcher mineDownMatcher = Util.getMineDownMatcher(returnText);
         // hex颜色代码匹配
         // test
         // System.out.println(returnText);
@@ -61,7 +50,7 @@ public class MdTransformer {
         while (mineDownMatcher.find()) {
             // 捕获 minedown 渐变文本
 
-            Matcher colorMatcher = color.matcher(mineDownMatcher.group(1));
+            Matcher colorMatcher = Util.getColorMatcher(mineDownMatcher.group(1));
 
             // test
             // System.out.println(mineDownMatcher.group(1));
@@ -74,19 +63,16 @@ public class MdTransformer {
                 colorCode.add(colorMatcher.group(1));
             }
 
-
             // 构建 minimessage 字符串
             StringBuilder miniGradient = new StringBuilder("\\$\\<gradient");
+
             // 循环添加所有渐变
             for (String code : colorCode) {
                 miniGradient.append(":").append(code);
             }
             miniGradient.append(">");
 
-            // test
-            // System.out.println(miniMessage);
-
-            returnText = returnText.replaceFirst(md.pattern(), String.valueOf(miniGradient));
+            returnText = returnText.replaceFirst(Util.getMineDownMatcher("").pattern().pattern(), String.valueOf(miniGradient));
         }
         return returnText;
 
