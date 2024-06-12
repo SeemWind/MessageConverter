@@ -16,6 +16,8 @@ a placeholderapi expansion plugin for color code converter to another format
 
 # Placeholders
 
+For placeholders, the argument must be included at the end of the placeholder separated by an underscore (_).
+
 | Placeholder      | Argument          | Description                                                                                                       |
 |------------------|:------------------|-------------------------------------------------------------------------------------------------------------------|
 | `%msgc_md2mini%` | other placeholder | convert [MineDown](https://github.com/Phoenix616/MineDown) to [MiniMessage](https://docs.advntr.dev/minimessage/) |
