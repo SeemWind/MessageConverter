@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.likewind.me</groupId>
-    <artifactId>MiniMessageConverter</artifactId>
-    <version>2.1.0</version>
+    <artifactId>MessageConverter</artifactId>
+    <version>2.1.1</version>
     <packaging>jar</packaging>
 
     <name>MessageConverter</name>
