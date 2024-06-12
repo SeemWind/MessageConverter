@@ -2,7 +2,6 @@ package com.likewind.me.message.converter;
 
 import de.themoep.minedown.adventure.MineDown;
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.minimessage.MiniMessage;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -11,17 +10,17 @@ import java.util.regex.Matcher;
 /**
  * @author LikeWind
  */
-public class MdTransformer {
+public class MdConverter {
     final String input;
     final Component component;
-    MiniMessage mm = MiniMessage.miniMessage();
 
 
-    public MdTransformer(String input) {
+    public MdConverter(String input) {
         this.input = input;
         component = new MineDown(input).toComponent();
     }
 
+    // keep
     public String getComponentString() {
         return Util.MINI_MESSAGE.serialize(component);
     }

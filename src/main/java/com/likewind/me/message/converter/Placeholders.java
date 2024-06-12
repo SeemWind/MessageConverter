@@ -12,7 +12,7 @@ public class Placeholders extends PlaceholderExpansion {
 
     @Override
     public @NotNull String getIdentifier() {
-        return "minimsgc";
+        return "msgc";
     }
 
     @Override
@@ -37,14 +37,14 @@ public class Placeholders extends PlaceholderExpansion {
             String var = "%" + params.replaceFirst(p1, "") + "%";
             var = PlaceholderAPI.setPlaceholders(player, var);
             // 转换 minedown为 minimessage
-            var = new MdTransformer(var).toMini();
+            var = new MdConverter(var).toMini();
             return var;
 
         } else if (params.startsWith(p2)) {
             String var = "%" + params.replaceFirst(p2, "") + "%";
             var = PlaceholderAPI.setPlaceholders(player, var);
 
-            var = new MiniTransformer(var).toMineDown();
+            var = new MiniConverter(var).toMineDown();
             return var;
         }
         return null;
