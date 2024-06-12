@@ -1,10 +1,13 @@
-package com.likewind.me.MessageConverter;
+package com.likewind.me.message.converter;
 
 import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.OfflinePlayer;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * @author LikeWind
+ */
 public class Placeholders extends PlaceholderExpansion {
 
     @Override
@@ -31,17 +34,18 @@ public class Placeholders extends PlaceholderExpansion {
         if (params.startsWith(p1)) {
 
             // 先解析 papi 占位符
-            String var = "%" + params.replaceFirst(p1,"") + "%";
+            String var = "%" + params.replaceFirst(p1, "") + "%";
             var = PlaceholderAPI.setPlaceholders(player, var);
             // 转换 minedown为 minimessage
             var = new MdTransformer(var).toMini();
             return var;
 
         } else if (params.startsWith(p2)) {
-            String var = "%" + params.replaceFirst(p2,"") + "%";
+            String var = "%" + params.replaceFirst(p2, "") + "%";
             var = PlaceholderAPI.setPlaceholders(player, var);
 
             var = new MiniTransformer(var).toMineDown();
+            return var;
         }
         return null;
     }

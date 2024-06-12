@@ -1,4 +1,4 @@
-package com.likewind.me.MessageConverter;
+package com.likewind.me.message.converter;
 
 import de.themoep.minedown.adventure.MineDownStringifier;
 import net.kyori.adventure.text.minimessage.MiniMessage;
@@ -6,6 +6,9 @@ import net.kyori.adventure.text.minimessage.MiniMessage;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * @author LikeWind
+ */
 public class Util {
     private static final Pattern md = Pattern.compile("(&#[A-Fa-f0-9]{6}(-#[A-Fa-f0-9]{6})+&)");
     private static final Pattern color = Pattern.compile("(#[A-Fa-f0-9]{6})");

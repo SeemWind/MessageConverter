@@ -1,4 +1,4 @@
-package com.likewind.me.MessageConverter;
+package com.likewind.me.message.converter;
 
 import de.themoep.minedown.adventure.MineDown;
 import net.kyori.adventure.text.Component;
@@ -7,14 +7,14 @@ import net.kyori.adventure.text.minimessage.MiniMessage;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 
+
 /**
- * @author like_wind
+ * @author LikeWind
  */
 public class MdTransformer {
-    ;
-    String input;
+    final String input;
+    final Component component;
     MiniMessage mm = MiniMessage.miniMessage();
-    Component component;
 
 
     public MdTransformer(String input) {
@@ -32,7 +32,7 @@ public class MdTransformer {
         MineDown mineDown = new MineDown(string);
         Component component = mineDown.toComponent();
         String s = Util.MINI_MESSAGE.serialize(component);
-        return s .replaceAll("(\\$\\\\<gradient:)", "<gradient:");
+        return s.replaceAll("(\\$\\\\<gradient:)", "<gradient:");
 
     }
 

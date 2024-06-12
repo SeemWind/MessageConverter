@@ -1,4 +1,5 @@
 # 项目排除路径
 /target/
-/src/main/java/com/likewind/me/MessageConverter/test/
+/src/main/java/com/likewind/me/message/converter/test/
 /src/main/resources/
+/qodana.yaml

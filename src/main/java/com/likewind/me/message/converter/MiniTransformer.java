@@ -1,11 +1,14 @@
-package com.likewind.me.MessageConverter;
+package com.likewind.me.message.converter;
 
 import de.themoep.minedown.adventure.MineDown;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 
+/**
+ * @author LikeWind
+ */
 public class MiniTransformer {
-    String input;
+    final String input;
 
     public MiniTransformer(String input) {
         this.input = input;
